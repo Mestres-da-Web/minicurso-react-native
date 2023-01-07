@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
+import styles from "./styles";
 
 interface Props {
   label: string;
@@ -10,12 +11,13 @@ interface Props {
 
 const InputText = ({ label, placeholder, value, onChangeText }: Props) => {
   return (
-    <View>
-      <Text>{label}</Text>
+    <View style={styles.container}>
+      <Text style={styles.label}>{label}</Text>
       <TextInput
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
+        style={styles.input}
       />
     </View>
   );

@@ -4,4 +4,5 @@ export interface Theme {
   description: string;
   inactiveButtonText: string;
   horizontalLine: string;
+  borderColor: string;
 }

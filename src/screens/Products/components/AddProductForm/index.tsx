@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Button, ScrollView, Text, View } from "react-native";
+import CustomButton from "../../../../components/CustomButton";
+import CloseIcon from "../../../../components/icons/Close";
 import InputPicker from "../../../../components/InputPicker";
 import InputText from "../../../../components/InputText";
+import theme from "../../../../global/theme";
 import styles from "./styles";
 
 interface IProduct {
@@ -38,9 +41,11 @@ const AddProductForm = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <Text>Cadastrar produto</Text>
-        <Text>X</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>Cadastrar produto</Text>
+        <CloseIcon width={20} />
+      </View>
+      <ScrollView style={styles.scrollContainer}>
         <InputPicker
           label="Categoria"
           items={[
@@ -85,26 +90,29 @@ const AddProductForm = () => {
             setFormData(copy);
           }}
         />
-        <InputText
-          label="Preço"
-          placeholder="Digite o preço"
-          value={formData.price}
-          onChangeText={(newValue) => {
-            const copy = { ...formData };
-            copy.price = newValue;
-            setFormData(copy);
-          }}
-        />
-        <InputText
-          label="Preço anterior"
-          placeholder="EX: 1.998,99"
-          value={formData.pastPrice}
-          onChangeText={(newValue) => {
-            const copy = { ...formData };
-            copy.pastPrice = newValue;
-            setFormData(copy);
-          }}
-        />
+        <View style={styles.horizontalContainer}>
+          <InputText
+            label="Preço"
+            placeholder="Digite o preço"
+            value={formData.price}
+            onChangeText={(newValue) => {
+              const copy = { ...formData };
+              copy.price = newValue;
+              setFormData(copy);
+            }}
+          />
+          <InputText
+            label="Preço anterior"
+            placeholder="EX: 1.998,99"
+            value={formData.pastPrice}
+            onChangeText={(newValue) => {
+              const copy = { ...formData };
+              copy.pastPrice = newValue;
+              setFormData(copy);
+            }}
+          />
+        </View>
+
         <InputText
           label="Descrição"
           placeholder="Descreva sobre o produto"
@@ -115,19 +123,26 @@ const AddProductForm = () => {
             setFormData(copy);
           }}
         />
-        <InputText
-          label="Estoque"
-          placeholder="Nº unidades"
-          value={formData.amount}
-          onChangeText={(newValue) => {
-            const copy = { ...formData };
-            copy.amount = newValue;
-            setFormData(copy);
-          }}
-        />
-        <Text>Unidades disponíveis</Text>
+        <View style={styles.horizontalContainer}>
+          <InputText
+            label="Estoque"
+            placeholder="Nº unidades"
+            value={formData.amount}
+            onChangeText={(newValue) => {
+              const copy = { ...formData };
+              copy.amount = newValue;
+              setFormData(copy);
+            }}
+          />
+          <Text style={styles.availableUnits}>Unidades disponíveis</Text>
+        </View>
 
-        <Button title="Adicionar produto" onPress={handleSubmit} />
+        <CustomButton
+          title="Adicionar produto"
+          onPress={handleSubmit}
+          containerStyle={styles.buttonContainer}
+          textStyle={styles.buttonText}
+        />
       </ScrollView>
     </View>
   );

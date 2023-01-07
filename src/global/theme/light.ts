@@ -6,6 +6,7 @@ const light: Theme = {
   description: "#696974",
   inactiveButtonText: "#696974",
   horizontalLine: "#707070",
+  borderColor: "#F1F1F5",
 };
 
 export default light;
