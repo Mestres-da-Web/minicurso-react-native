@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { View } from "react-native";
+import { Button, Text, View } from "react-native";
 import BottomNav from "../../components/BottomNav";
 import CustomModal from "../../components/CustomModal";
 import SubHeader from "../../components/SubHeader";
@@ -7,17 +7,37 @@ import { RootStackParamList } from "../../routes";
 import styles from "./styles";
 
 import AddProductForm from "./components/AddProductForm";
+import { useEffect, useState } from "react";
+import api from "../../services/api";
+import ProductsList from "./components/ProductsList";
+import EmptyList from "./components/EmptyList";
+import { IProduct } from "../../types";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Products">;
 
 const Products = ({ route, navigation }: Props) => {
+  const [data, setData] = useState<IProduct[]>([]);
+
+  useEffect(() => {
+    const get = async () => {
+      const response = await api.get<IProduct[]>("/product");
+      setTimeout(() => {
+        setData(response.data);
+      }, 2000);
+    };
+
+    get();
+  }, []);
+
   return (
     <View style={styles.container}>
       <SubHeader />
 
-      <CustomModal>
+      {/* <CustomModal>
         <AddProductForm />
-      </CustomModal>
+      </CustomModal> */}
+
+      {data.length > 0 ? <ProductsList data={data} /> : <EmptyList />}
 
       <BottomNav />
     </View>
