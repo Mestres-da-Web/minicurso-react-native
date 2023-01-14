@@ -5,6 +5,8 @@ export interface Theme {
   inactiveButtonText: string;
   horizontalLine: string;
   borderColor: string;
+  listHeaderBackground: string;
+  listBorder: string;
 }
 
 export interface IProduct {

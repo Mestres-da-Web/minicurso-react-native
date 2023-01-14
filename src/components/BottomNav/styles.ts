@@ -3,8 +3,8 @@ import theme from "../../global/theme";
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute",
-    bottom: 0,
+    /* position: "absolute",
+    bottom: 0, */
     padding: 20,
     width: "100%",
   },
