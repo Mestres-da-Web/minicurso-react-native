@@ -7,10 +7,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: theme.listHeaderBackground,
-    borderWidth: 2,
-    /* borderColor: theme.borderColor, */
+    borderBottomWidth: 2,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
+    borderColor: theme.listBorder,
     padding: 10,
   },
   name: { flex: listItemFlexValues.name },

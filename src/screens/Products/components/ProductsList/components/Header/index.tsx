@@ -8,6 +8,7 @@ const ProductsListHeader = () => {
       <Text style={styles.id}>#ID</Text>
       <Text style={styles.amount}>Estoque</Text>
       <Text style={styles.price}>Preço</Text>
+      <Text style={styles.del}></Text>
     </View>
   );
 };

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import theme from "../../../../global/theme";
 
 export const listItemFlexValues = {
   name: 0.35,
@@ -14,13 +15,21 @@ const styles = StyleSheet.create({
     margin: 20,
     borderWidth: 2,
     borderRadius: 15,
+    borderColor: theme.listBorder,
   },
   listItemContainer: {
     flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 10,
   },
-  name: { flex: listItemFlexValues.name },
+  nameContainer: {
+    flexDirection: "row",
+    flex: listItemFlexValues.name,
+    paddingLeft: 10,
+  },
+  name: { paddingLeft: 10 },
   id: { flex: listItemFlexValues.id },
-  amount: { flex: listItemFlexValues.amount },
+  amount: { flex: listItemFlexValues.amount, textAlign: "center" },
   price: { flex: listItemFlexValues.price },
   del: { flex: listItemFlexValues.del },
 });
