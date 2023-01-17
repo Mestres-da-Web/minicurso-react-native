@@ -17,25 +17,36 @@ type Props = NativeStackScreenProps<RootStackParamList, "Products">;
 
 const Products = ({ route, navigation }: Props) => {
   const [data, setData] = useState<IProduct[]>([]);
+  const [isAdding, setIsAdding] = useState(false);
+
+  const getData = async () => {
+    const response = await api.get<IProduct[]>("/product");
+    setTimeout(() => {
+      setData(response.data);
+    }, 2000);
+  };
 
   useEffect(() => {
-    const get = async () => {
-      const response = await api.get<IProduct[]>("/product");
-      setTimeout(() => {
-        setData(response.data);
-      }, 2000);
-    };
-
-    get();
+    getData();
   }, []);
+
+  const handleAddItem = () => {
+    setIsAdding(true);
+  };
+
+  const handleProductCreation = (newProduct: IProduct) => {
+    setIsAdding(false);
+    const newData = [...data, newProduct];
+    setData(newData);
+  };
 
   return (
     <View style={styles.container}>
-      <SubHeader />
+      <SubHeader onAddPress={handleAddItem} />
 
-      {/* <CustomModal>
-        <AddProductForm />
-      </CustomModal> */}
+      <CustomModal visible={isAdding}>
+        <AddProductForm onProductCreation={handleProductCreation} />
+      </CustomModal>
 
       {data.length > 0 ? <ProductsList data={data} /> : <EmptyList />}
 

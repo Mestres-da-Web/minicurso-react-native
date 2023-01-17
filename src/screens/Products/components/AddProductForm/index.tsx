@@ -5,6 +5,7 @@ import CloseIcon from "../../../../components/icons/Close";
 import InputPicker from "../../../../components/InputPicker";
 import InputText from "../../../../components/InputText";
 import theme from "../../../../global/theme";
+import api from "../../../../services/api";
 import styles from "./styles";
 
 interface IProduct {
@@ -32,11 +33,21 @@ const initialFormData: IProductForm = {
   store: "",
 };
 
-const AddProductForm = () => {
+interface Props {
+  onProductCreation: (newProduct: IProduct) => void;
+}
+
+const AddProductForm = ({ onProductCreation }: Props) => {
   const [formData, setFormData] = useState<IProductForm>(initialFormData);
 
-  const handleSubmit = () => {
-    console.log(formData);
+  const handleSubmit = async () => {
+    try {
+      const response = await api.post<IProduct>("/product", formData);
+
+      onProductCreation(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

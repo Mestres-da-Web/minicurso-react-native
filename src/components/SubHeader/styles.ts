@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: theme.title,
   },
+  titleIconContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   description: {
     fontSize: 14,
     color: theme.description,

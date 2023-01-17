@@ -3,11 +3,12 @@ import styles from "./styles";
 
 interface Props {
   children: JSX.Element;
+  visible: boolean;
 }
 
-const CustomModal = ({ children }: Props) => {
+const CustomModal = ({ children, visible }: Props) => {
   return (
-    <Modal transparent visible={true} animationType={"slide"}>
+    <Modal transparent visible={visible} animationType={"slide"}>
       <View style={styles.modalBackground}>{children}</View>
     </Modal>
   );

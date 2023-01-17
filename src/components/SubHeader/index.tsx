@@ -1,6 +1,14 @@
 import { useState } from "react";
-import { StyleProp, Text, TextStyle, View, ViewStyle } from "react-native";
+import {
+  StyleProp,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 import CustomButton from "../CustomButton";
+import PlusIcon from "../icons/Plus";
 import styles from "./styles";
 
 enum ActiveButton {
@@ -13,7 +21,11 @@ interface ProductsSubHeaderButtonStyle {
   textStyle?: StyleProp<TextStyle>;
 }
 
-const SubHeader = () => {
+interface Props {
+  onAddPress: () => void;
+}
+
+const SubHeader = ({ onAddPress }: Props) => {
   const [activeButton, setActiveButton] = useState(ActiveButton.ALL_PRODUCTS);
 
   const allProductsButtonStyle: ProductsSubHeaderButtonStyle = {};
@@ -46,7 +58,12 @@ const SubHeader = () => {
   return (
     <>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Produtos</Text>
+        <View style={styles.titleIconContainer}>
+          <Text style={styles.title}>Produtos</Text>
+          <TouchableOpacity onPress={onAddPress}>
+            <PlusIcon />
+          </TouchableOpacity>
+        </View>
         <Text style={styles.description}>
           Nesta página você verá os seus produtos cadastrados.
         </Text>
